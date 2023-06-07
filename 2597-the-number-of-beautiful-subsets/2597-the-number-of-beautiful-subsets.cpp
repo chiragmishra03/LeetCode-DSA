@@ -3,7 +3,10 @@ public:
     
 int help(int i, vector<int>& nums, int k, unordered_map<int, int>& mp) {
 	if (i == nums.size()) { 
-		return 1;
+		if(!mp.empty()){
+            return 1;
+        }
+        return 0;
 	}
 	int taken = 0;
 	if (!mp[nums[i] - k] && !mp[nums[i]+k])
