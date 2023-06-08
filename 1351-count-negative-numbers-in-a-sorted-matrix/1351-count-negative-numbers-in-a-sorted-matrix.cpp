@@ -1,20 +1,37 @@
 class Solution {
 public:
-    int countNegatives(vector<vector<int>>& grid) {
-int i = grid.size() - 1;
-int j = 0;
-int cnt = 0;
+int findFirstNegative(const vector<int>nums) {
+    int left = 0;
+    int right = nums.size() - 1;
 
-while (i >= 0 && j <= grid[i].size() - 1) {
-    if (grid[i][j] < 0) {
-        cnt += grid[i].size() - j;
-        i--;
-    } 
-    else 
-    {
-        j++;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        
+        if (nums[mid] < 0) {
+            if (mid == 0 || nums[mid - 1] >= 0) {
+                return mid;
+            }
+            right = mid - 1; 
+        } else {
+            left = mid + 1;
+        }
     }
+    
+    return -1; // No negative element found
 }
-return cnt;
+
+
+    
+int countNegatives(vector<vector<int>>& grid) {
+
+    int cnt=0;
+    
+    for(int i=0;i<grid.size();i++){
+        int index = findFirstNegative(grid[i]);
+        if(index!=-1){
+            cnt+=grid[i].size()-index;
+        }
+    }
+    return cnt;
     }
 };
