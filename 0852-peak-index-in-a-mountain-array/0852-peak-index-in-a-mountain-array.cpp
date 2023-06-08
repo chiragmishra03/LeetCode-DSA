@@ -12,7 +12,7 @@ public:
          return mid;
      }
             else if(mid!=0 && arr[mid]<arr[mid-1] && arr[mid]>arr[mid+1]){
-                hi = mid-1;
+                hi = mid;
             }
             
             else
