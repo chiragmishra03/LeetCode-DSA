@@ -18,7 +18,6 @@ int help(int i, vector<int>& nums, int k, unordered_map<int,int> &mp) {
 }
 int beautifulSubsets(vector<int>& nums, int k) {
     unordered_map<int,int> mp;
-    sort(nums.begin(),nums.end());
     return help(0,nums,k,mp)-1;
         
 }
