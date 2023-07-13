@@ -14,11 +14,11 @@ int solve(int n, int x, int y, int z,vector<int>&dp){
 	if(n==0){return 0;}
 	if(dp[n]!=-1){return dp[n];}
 	int a = INT_MIN,b=INT_MIN,c=INT_MIN;	
-	if(n>=x)
+	if(n-x>=0)
 		a = solve(n-x, x,  y, z,dp);
-	if(n>=y)
+	if(n-y>=0)
 		b = solve(n-y, x, y, z,dp);
-	if(n>=z)
+	if(n-z>=0)
 		c = solve(n-z, x, y, z,dp);
 
 	return dp[n] =  max(a,max(b,c))+1;
