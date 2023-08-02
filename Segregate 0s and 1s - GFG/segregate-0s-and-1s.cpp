@@ -17,12 +17,13 @@ public:
                i++;
                j++;
             }
-           else if(arr[i]==1 && arr[j]==0){
-                swap(arr[i],arr[j]);
+           else if(arr[i]==1 && arr[j]==1){
+                j++;
             }
             
             else{
-                j++;
+                swap(arr[i],arr[j]);
+                i++;
             }
             
         }
