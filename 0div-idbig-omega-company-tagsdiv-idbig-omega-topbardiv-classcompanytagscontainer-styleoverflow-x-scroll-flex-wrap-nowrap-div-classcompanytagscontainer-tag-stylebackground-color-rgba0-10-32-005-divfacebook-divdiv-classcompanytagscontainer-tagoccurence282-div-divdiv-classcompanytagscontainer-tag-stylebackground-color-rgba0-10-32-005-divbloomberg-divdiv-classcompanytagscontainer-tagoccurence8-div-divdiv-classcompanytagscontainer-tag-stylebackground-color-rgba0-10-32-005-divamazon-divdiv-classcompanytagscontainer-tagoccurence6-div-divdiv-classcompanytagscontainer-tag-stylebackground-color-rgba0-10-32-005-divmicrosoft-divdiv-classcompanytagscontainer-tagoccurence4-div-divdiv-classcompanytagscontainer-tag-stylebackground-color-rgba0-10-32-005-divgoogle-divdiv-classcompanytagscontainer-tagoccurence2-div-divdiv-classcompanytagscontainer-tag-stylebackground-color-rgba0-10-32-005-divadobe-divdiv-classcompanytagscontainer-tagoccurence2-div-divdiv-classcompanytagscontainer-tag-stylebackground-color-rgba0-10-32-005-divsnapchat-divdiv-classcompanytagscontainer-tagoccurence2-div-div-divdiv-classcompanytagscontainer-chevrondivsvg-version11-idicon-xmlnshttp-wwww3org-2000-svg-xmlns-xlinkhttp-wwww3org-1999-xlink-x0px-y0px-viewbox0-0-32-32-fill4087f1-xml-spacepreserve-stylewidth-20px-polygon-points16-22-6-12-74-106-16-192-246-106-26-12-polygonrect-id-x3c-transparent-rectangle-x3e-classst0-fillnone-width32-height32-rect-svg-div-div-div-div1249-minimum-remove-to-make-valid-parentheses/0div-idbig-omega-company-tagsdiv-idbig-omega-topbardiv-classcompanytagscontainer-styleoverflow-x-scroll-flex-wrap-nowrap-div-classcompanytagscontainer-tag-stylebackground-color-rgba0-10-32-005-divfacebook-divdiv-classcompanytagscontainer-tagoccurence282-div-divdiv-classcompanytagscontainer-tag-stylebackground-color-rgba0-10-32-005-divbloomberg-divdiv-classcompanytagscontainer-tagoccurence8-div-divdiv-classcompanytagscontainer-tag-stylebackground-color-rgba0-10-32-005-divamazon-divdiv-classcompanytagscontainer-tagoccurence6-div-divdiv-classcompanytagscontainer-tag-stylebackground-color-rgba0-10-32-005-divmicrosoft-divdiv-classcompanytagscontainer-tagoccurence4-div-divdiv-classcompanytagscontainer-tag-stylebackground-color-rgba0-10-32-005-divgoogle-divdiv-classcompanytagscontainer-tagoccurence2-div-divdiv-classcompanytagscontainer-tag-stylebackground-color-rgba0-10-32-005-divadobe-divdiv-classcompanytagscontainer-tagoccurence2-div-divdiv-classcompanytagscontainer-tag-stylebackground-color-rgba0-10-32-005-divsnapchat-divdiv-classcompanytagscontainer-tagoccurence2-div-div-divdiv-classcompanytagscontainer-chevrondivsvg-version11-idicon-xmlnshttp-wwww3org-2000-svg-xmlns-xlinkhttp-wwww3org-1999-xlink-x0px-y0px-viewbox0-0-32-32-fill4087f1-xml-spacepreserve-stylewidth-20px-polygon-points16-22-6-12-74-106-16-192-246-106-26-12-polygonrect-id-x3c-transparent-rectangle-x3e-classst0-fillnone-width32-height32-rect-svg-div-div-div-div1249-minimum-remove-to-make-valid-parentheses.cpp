@@ -4,36 +4,35 @@ public:
         string ans = "",finalans = "";
         int status = 0;
         for(int i = 0; i < s.size(); i++){
-            ans+=s[i];
-            
-            
-            if(s[i] == '(')
-            status++;
-            
-            
-            else
-            {
-            if(s[i] == ')')
-            status--;
+            if(s[i] == '(')status++;
+            else if(s[i]==')'){
+               if(status>0){
+                   status--;
+               } 
+                else{
+                    s[i]='/';
+                }
             }
-            
-            if(status < 0)
-            {
-            ans.pop_back();
-            status++;
-            }
+            if(s[i]!='/')ans+=s[i];
         }
-       if(status==0) return ans;
-        for(int i = ans.size()-1; i >= 0 ; i--){
-            if(ans[i] == '('){
-                if(status == 0) finalans += ans[i];
-                else 
-            status--;
+       if(status==0)return ans;
+        int c = 0;  
+        for(int i=ans.size()-1;i>=0;i--){
+            if(ans[i]==')'){
+                c++;
             }
-            else
-            finalans += ans[i];
+            else if(ans[i]=='('){
+                if(c>0){
+                    c--;
+                }
+                else{
+                    ans[i]='/';
+                }
+            }
+            if(ans[i]!='/')finalans+=ans[i];
         }
-        reverse(finalans.begin(),finalans.end());
-        return finalans;   
+        
+     reverse(finalans.begin(),finalans.end());
+        return finalans;
     }
 };
