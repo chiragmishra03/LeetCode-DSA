@@ -10,17 +10,12 @@ public:
                 st.pop();
                 k--;
             }
-            if (st.empty() && digit == '0') {
-                continue; 
-            }
             st.push(digit);
         }
-        
-        while (!st.empty() && k > 0) {
+        while(!st.empty() and k>0){
             st.pop();
             k--;
         }
-        
         if (st.empty()) {
             return "0"; 
         }
@@ -28,6 +23,9 @@ public:
         while (!st.empty()) {
             num.push_back(st.top());
             st.pop();
+        }
+        while(num.size()>1 and num.back()=='0'){
+            num.pop_back();
         }
         reverse(num.begin(),num.end());
         return num;
