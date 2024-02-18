@@ -12,9 +12,7 @@ public:
 	int num = digits[i] - '0';
 	string s = mapping[num];
 	for (int idx = 0 ; idx < s.length(); idx++) {
-		cur.push_back(s[idx]);
-		solve(digits, cur , i + 1);
-		cur.pop_back();
+		solve(digits, cur+s[idx] , i + 1);
 	}
 }
     
