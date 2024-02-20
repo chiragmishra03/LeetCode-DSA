@@ -28,8 +28,7 @@ public:
                 if(p2.first>0)pq.push(p2);
             }
             else {
-                if (pq.top().first > 1 || (!ans.empty() && ans[ans.size() - 1] == pq.top().second))
-return "";
+                if (pq.top().first > 1)return "";
                 else{
                     ans+=pq.top().second;
                     pq.pop();
