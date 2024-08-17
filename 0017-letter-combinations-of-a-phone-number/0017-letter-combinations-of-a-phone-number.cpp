@@ -1,25 +1,25 @@
 class Solution {
 public:
-    vector<string>ans;
-    vector<string>mapping = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-    void solve(string digits, string cur, int i)
-{
-	if (i == digits.size()) {
-        if(cur.size()>0)
-		ans.push_back(cur);
-        return;
-	}
-	int num = digits[i] - '0';
-	string s = mapping[num];
-	for (int idx = 0 ; idx < s.length(); idx++) {
-		solve(digits, cur+s[idx] , i + 1);
-	}
-}
-    
-    
+    vector<string>mp = {"" ,"", "abc" , "def","ghi" , "jkl" , "mno","pqrs" , "tuv" , "wxyz"};
+
+    void func(int i ,string digits,string str,vector<string>&ans){
+        if(i==digits.length()){
+            ans.push_back(str);
+            return;
+        }
+        int digit = digits[i]-'0';
+        string s = mp[digit];
+        for(int j=0;j<s.length();j++){
+            str.push_back(s[j]);
+            func(i+1,digits,str,ans);
+            str.pop_back();
+        }
+        return ;   
+    }
     vector<string> letterCombinations(string digits) {
-    string cur;
-	solve(digits, cur, 0);
+        vector<string>ans;
+        if(digits.length()==0)return ans;
+        func(0,digits,"",ans);
         return ans;
     }
 };
