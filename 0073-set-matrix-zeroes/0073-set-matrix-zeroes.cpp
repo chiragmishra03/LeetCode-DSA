@@ -1,36 +1,41 @@
 class Solution {
 public:
     void setZeroes(vector<vector<int>>& matrix) {
-        int m = matrix.size();
-        int n = matrix[0].size();
-        
-        // Create vectors to store the row and column indices
-        vector<int> rows;
-        vector<int> cols;
-        
-        // Traverse the matrix and store the row and column indices where 0 is found
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (matrix[i][j] == 0) {
-                    rows.push_back(i);
-                    cols.push_back(j);
+        int rows = matrix.size();
+        int cols = matrix[0].size();
+        bool firstRowisZero=false;
+        bool firstColisZero=false;
+        for(int i=0;i<rows;i++){
+            for(int j=0;j<cols;j++){
+                if(matrix[i][j]==0){
+                    
+                    //first check
+                    if(i==0)firstRowisZero=true;
+                    if(j==0)firstColisZero=true;
+                    
+                    //second check
+                    matrix[i][0]=0;    //mark row as zero
+                    matrix[0][j]=0;    //mark col as zero
                 }
             }
         }
         
-        // Set rows to 0
-        for (int i = 0; i < rows.size(); i++) {
-            int row = rows[i];
-            for (int j = 0; j < n; j++) {
-                matrix[row][j] = 0;
+        for(int i=1;i<rows;i++){
+            for(int j=1;j<cols;j++){
+                if(matrix[i][0]==0 || matrix[0][j]==0){
+                    matrix[i][j]=0;
+                }
             }
         }
         
-        // Set columns to 0
-        for (int i = 0; i < cols.size(); i++) {
-            int col = cols[i];
-            for (int j = 0; j < m; j++) {
-                matrix[j][col] = 0;
+        if(firstRowisZero){
+            for(int i=0;i<cols;i++){
+                matrix[0][i]=0;
+            }
+        }
+        if(firstColisZero){
+            for(int i=0;i<rows;i++){
+                matrix[i][0]=0;
             }
         }
     }
